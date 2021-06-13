@@ -13,7 +13,7 @@ final case class LikeStatus(status: Int)
 
 object LikeService {
 
-  def byId: Service[UserId, LikeStatus] = Service.mk(userId =>
+  def byId: Service[UserId, (UserId, Int)] = Service.mk(userId =>
     HttpClientService.general
       .withTls(LikeRequest.host)
       .withTlsWithoutValidation
@@ -24,7 +24,7 @@ object LikeService {
 
         result match {
           case Left(error)  => Future.exception(error)
-          case Right(value) => Future.value(value)
+          case Right(value) => Future.value((userId, value.status))
         }
       }
   )
