@@ -1,3 +1,6 @@
+enablePlugins(JavaAppPackaging)
+enablePlugins(DockerPlugin)
+
 name := "TinderAutoLike"
 
 version := "0.1"
@@ -62,3 +65,21 @@ scalacOptions ++= Seq(
   "-Ycache-plugin-class-loader:last-modified", // Enables caching of classloaders for compiler plugins
   "-Ycache-macro-class-loader:last-modified"   // and macro definitions. This can lead to performance improvements.
 )
+
+Docker / packageName := packageName.value
+
+Docker / version := version.value
+
+dockerBaseImage := "openjdk:11"
+
+Docker / maintainer := maintainer.value
+
+javaOptions in Universal ++= Seq(
+  // -J params will be added as jvm parameters
+  // https://finagle.github.io/blog/2016/09/01/block-party/
+  "-J-Xmx3G",
+  "-J-Xms3G"
+)
+
+mainClass in Compile := Some("package com.autolikes.service.App")
+dockerExposedPorts := Seq()
