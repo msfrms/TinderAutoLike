@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+domain = ARGV[0]
+system("rm -rf target")
+system("sbt docker:stage")
+system("cd target/docker/stage && docker build -t #{domain}/autolike .")
+system("docker push #{domain}/autolike")
