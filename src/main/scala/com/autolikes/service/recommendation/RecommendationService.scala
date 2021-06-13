@@ -6,8 +6,8 @@ import com.twitter.finagle.Service
 import com.twitter.util.Future
 
 import io.circe.Json
-import io.circe.parser.parse
 import io.circe.generic.auto._
+import io.circe.parser.parse
 
 final case class User(_id: String)
 
