@@ -81,5 +81,5 @@ javaOptions in Universal ++= Seq(
   "-J-Xms3G"
 )
 
-mainClass in Compile := Some("package com.autolikes.service.App")
+Compile / mainClass := Some("package com.autolikes.service.App")
 dockerExposedPorts := Seq()
