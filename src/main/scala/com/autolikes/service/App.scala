@@ -20,13 +20,14 @@ object App {
             RandomDelayFilter(from = 5.seconds, to = 15.seconds)
               .andThen(LikeService.byId)
               .apply(id)
+              .onSuccess(println)
+              .onFailure(println)
           )
-          .onSuccess(println)
       } yield ()
     )
 
     val appFuture =
-      RepeatFilter(delay = 1.minute).andThen(mainService).apply(())
+      RepeatFilter(delay = 5.seconds).andThen(mainService).apply(())
 
     Await.ready(appFuture)
   }
