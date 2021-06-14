@@ -74,7 +74,7 @@ dockerBaseImage := "openjdk:11"
 
 Docker / maintainer := maintainer.value
 
-javaOptions in Universal ++= Seq(
+Universal / javaOptions ++= Seq(
   // -J params will be added as jvm parameters
   // https://finagle.github.io/blog/2016/09/01/block-party/
   "-J-Xmx3G",
