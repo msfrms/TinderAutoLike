@@ -7,7 +7,7 @@ version := "0.1"
 
 scalaVersion := "2.13.6"
 
-val finagleVersion = "20.8.1"
+val finagleVersion = "21.12.0"
 val circeVersion   = "0.13.0"
 
 libraryDependencies += "com.twitter" %% "finagle-http" % finagleVersion
