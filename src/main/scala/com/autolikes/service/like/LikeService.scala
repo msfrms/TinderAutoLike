@@ -13,12 +13,12 @@ final case class LikeStatus(status: Int)
 
 object LikeService {
 
-  def byId: Service[UserId, (UserId, Int)] = Service.mk(userId =>
+  def byId(userId: UserId): Service[String, (UserId, Int)] = Service.mk(token =>
     HttpClientService.general
       .withTls(LikeRequest.host)
       .withTlsWithoutValidation
       .newService(s"${LikeRequest.host}:443", "tinder.like")
-      .apply(LikeRequest.byId(userId))
+      .apply(LikeRequest.byId(userId, token))
       .flatMap { rep =>
         val result = decode[LikeStatus](rep.contentString)
 
